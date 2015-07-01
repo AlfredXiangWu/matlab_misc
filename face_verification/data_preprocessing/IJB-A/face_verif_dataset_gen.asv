@@ -1,0 +1,2 @@
+%% This program is used to crop the face images from IJB-A dataset for each split of verificaition tasks.
+function [] = 
