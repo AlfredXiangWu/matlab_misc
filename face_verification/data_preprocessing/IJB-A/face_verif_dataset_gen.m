@@ -11,7 +11,7 @@ function [] = face_verif_dataset_gen(img_data_path, meta_data_path, save_data_pa
     list = fgetl(fid);
     fid_list = fopen(list_path, 'w+');
     
-    while ischar(list)
+    while ((ischar(list))&(list~=-1))
        % load face image information
        list = fgetl(fid);
        tmp = regexp(list, ',', 'split');
