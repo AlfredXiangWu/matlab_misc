@@ -10,10 +10,10 @@ function [] = face_verif_dataset_gen(img_data_path, meta_data_path, save_data_pa
     fid = fopen(meta_data_path);
     list = fgetl(fid);
     fid_list = fopen(list_path, 'w+');
+    list = fgetl(fid);
     
-    while ((ischar(list))&(list~=-1))
-       % load face image information
-       list = fgetl(fid);
+    while list~=-1
+       % load face image information    
        tmp = regexp(list, ',', 'split');
        img_name = tmp{3};
        label = tmp{2};
@@ -35,6 +35,7 @@ function [] = face_verif_dataset_gen(img_data_path, meta_data_path, save_data_pa
        save_path = strrep(save_path, '\', '/');
        imwrite(crop_img, save_path);
        fprintf(fid_list, '%s %s\n', save_path, label);
+       list = fgetl(fid);
     end
     
     fclose(fid);
